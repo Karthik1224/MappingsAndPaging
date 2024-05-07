@@ -1,7 +1,10 @@
 package com.example.Mappings.onetoone.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -47,4 +50,16 @@ public class PaginationService {
 		
 		return listOfUsers;
 	}
+	
+	public List<String> getUsers()
+	{
+		HashMap<String,String>mp = new HashMap<>();
+		List<User> users = userDAO.findAll();
+		
+		List<String> listOfNames = users.stream().filter(user -> user.getSalary() > 5000).map(user -> user.getUserName()).collect(Collectors.toList());
+		return listOfNames;
+	}
+	
+	
+	
 }

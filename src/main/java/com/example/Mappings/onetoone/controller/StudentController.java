@@ -13,6 +13,7 @@ import com.example.Mappings.onetoone.modal.User;
 import com.example.Mappings.onetoone.service.EmailService;
 import com.example.Mappings.onetoone.service.PaginationService;
 import com.example.Mappings.onetoone.service.StudentService;
+import com.example.Mappings.onetoone.service.TransactionManagement;
 
 @RestController
 @RequestMapping("/mapping")
@@ -27,8 +28,11 @@ public class StudentController {
 	@Autowired
 	private PaginationService paginationService;
 	
+	@Autowired
+	private TransactionManagement transactionManagement;
+	
 	@PostMapping("/create")
-	public void create()
+	public List<String> create()
 	{
 		//studentService.create1();
 		
@@ -40,7 +44,8 @@ public class StudentController {
 		
 		//emailService.sendSimpleMail();
 	
-		
+		//transactionManagement.manageTransactions();
+		return paginationService.getUsers();
 	}
 	
 	@PostMapping("/paging")
